@@ -17,9 +17,12 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITAL_CREATOR_HUB }}'
-          channelId: live
-          projectId: digital-creator-hub
+      - name: Authenticate Firebase (service account)
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITAL_CREATOR_HUB }}" > $HOME/firebaseServiceAccount.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebaseServiceAccount.json" >> $GITHUB_ENV
+      - name: Deploy to Firebase Hosting (live)
+        env:
+          FIREBASE_DEBUG: 'true'
+        run: |
+          npx --yes firebase-tools@latest deploy --only hosting --project digital-creator-hub
