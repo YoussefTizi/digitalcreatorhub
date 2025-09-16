@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Disallow: /private/
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://digital-creator-hub.web.app
+
+# Sitemaps
+Sitemap: https://digital-creator-hub.web.app/sitemap.xml
