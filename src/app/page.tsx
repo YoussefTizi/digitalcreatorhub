@@ -30,6 +30,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 {t('header_title')}
             </h1>
+            <p className="text-xs opacity-90">CI Deployed • Firebase Hosting</p>
             <p className="text-lg md:text-xl">
               {t('header_sub_title')}
             </p>
